@@ -12,5 +12,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mStarView = (StarView) this.findViewById(R.id.star_view);
+        //设置是否可以点击
+        mStarView.setCanSelected(true);
+        // 设置显示等级
+        mStarView.setLevel(5);
     }
 }

@@ -29,8 +29,13 @@ public class StarView extends FrameLayout implements View.OnClickListener {
     // 是否可以点击
     private boolean canSelected;
 
-    private void setCanSelected(boolean isCanSelected) {
+    public void setCanSelected(boolean isCanSelected) {
         this.canSelected = isCanSelected;
+        if (canSelected) {
+            for (ImageView iv : imageViews) {
+                iv.setOnClickListener(this);
+            }
+        }
     }
 
 
@@ -131,7 +136,7 @@ public class StarView extends FrameLayout implements View.OnClickListener {
      *
      * @param level 可根据百分比得出12345等级用于显示
      */
-    private void setLevel(int level) {
+    public void setLevel(int level) {
         for (int i = 0; i < imageViews.size(); i++) {
             ImageView iv = imageViews.get(i);
             iv.setSelected(false);
