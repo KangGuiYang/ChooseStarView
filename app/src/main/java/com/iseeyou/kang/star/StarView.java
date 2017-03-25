@@ -26,6 +26,13 @@ public class StarView extends FrameLayout implements View.OnClickListener {
     private List<ImageView> imageViews = new ArrayList<>();
     // 等级
     private int level;
+    // 是否可以点击
+    private boolean canSelected;
+
+    private void setCanSelected(boolean isCanSelected) {
+        this.canSelected = isCanSelected;
+    }
+
 
     public StarView(@NonNull Context context) {
         this(context, null);
@@ -43,18 +50,20 @@ public class StarView extends FrameLayout implements View.OnClickListener {
     private void init(Context context) {
         mContext = context;
         mView = View.inflate(mContext, R.layout.view_star_layout, this);
-        iv1 = (ImageView) $(mView,R.id.iv1);
-        iv2 = (ImageView) $(mView,R.id.iv2);
-        iv3 = (ImageView) $(mView,R.id.iv3);
-        iv4 = (ImageView) $(mView,R.id.iv4);
-        iv5 = (ImageView) $(mView,R.id.iv5);
+        iv1 = (ImageView) $(mView, R.id.iv1);
+        iv2 = (ImageView) $(mView, R.id.iv2);
+        iv3 = (ImageView) $(mView, R.id.iv3);
+        iv4 = (ImageView) $(mView, R.id.iv4);
+        iv5 = (ImageView) $(mView, R.id.iv5);
         imageViews.add(iv1);
         imageViews.add(iv2);
         imageViews.add(iv3);
         imageViews.add(iv4);
         imageViews.add(iv5);
-        for (ImageView iv : imageViews) {
-            iv.setOnClickListener(this);
+        if (canSelected) {
+            for (ImageView iv : imageViews) {
+                iv.setOnClickListener(this);
+            }
         }
     }
 
@@ -108,10 +117,60 @@ public class StarView extends FrameLayout implements View.OnClickListener {
         }
     }
 
+    /**
+     * 获取选择的评价等级
+     *
+     * @return
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     * 设置等级
+     *
+     * @param level 可根据百分比得出12345等级用于显示
+     */
+    private void setLevel(int level) {
+        for (int i = 0; i < imageViews.size(); i++) {
+            ImageView iv = imageViews.get(i);
+            iv.setSelected(false);
+        }
+        switch (level) {
+            case 1:
+                iv1.setSelected(true);
+                break;
+            case 2:
+                iv1.setSelected(true);
+                iv2.setSelected(true);
+                break;
+            case 3:
+                iv1.setSelected(true);
+                iv2.setSelected(true);
+                iv3.setSelected(true);
+                break;
+            case 4:
+                iv1.setSelected(true);
+                iv2.setSelected(true);
+                iv3.setSelected(true);
+                iv4.setSelected(true);
+                break;
+            case 5:
+                iv1.setSelected(true);
+                iv2.setSelected(true);
+                iv3.setSelected(true);
+                iv4.setSelected(true);
+                iv5.setSelected(true);
+                break;
+        }
+    }
+
+    /**
+     * findViewById
+     * @param view
+     * @param id
+     * @return
+     */
     private View $(View view, int id) {
         return view.findViewById(id);
     }
