@@ -3,11 +3,4 @@
 > 可手动设置评价等级
 >> 可直接设置等级用于显示
 >>> 
-
- ```java
-   mStarView = (StarView) this.findViewById(R.id.star_view);
-        //设置是否可以点击
-        mStarView.setCanSelected(true);
-        // 设置显示等级
-        mStarView.setLevel(5);
-   
+![Alt text](https://github.com/KangGuiYang/ChooseStarView/tree/master/Screenshots/1.png)
